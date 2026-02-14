@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 Valentine 2026 – Dương Thành Đạt & Lê Nguyên Thảo</title>
+    <title>💖 Valentine 2026 – Dương Thành Đạt ❤️ Lê Nguyên Thảo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ===== CURSOR GLOW EFFECT ===== -->
+    <!-- ===== CURSOR GLOW ===== -->
     <div id="cursor-glow"></div>
 
-    <!-- ===== FLOATING HEARTS CONTAINER ===== -->
+    <!-- ===== FLOATING ELEMENTS CONTAINER ===== -->
     <div id="floating-hearts"></div>
+
+    <!-- ===== FALLING PETALS ===== -->
+    <div id="falling-petals"></div>
 
     <!-- ===== CONFETTI CANVAS ===== -->
     <canvas id="confetti-canvas"></canvas>
@@ -62,7 +65,48 @@
     </section>
 
     <!-- =============================================== -->
-    <!-- SECTION 2: LOVE LETTER (ENVELOPE)              -->
+    <!-- SECTION 2: FLOWER BOUQUET (MỚI)               -->
+    <!-- =============================================== -->
+    <section id="flowers" class="section flowers-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">🌹 Bó hoa dành cho em</h2>
+            <p class="section-desc fade-in-element">Nhấn vào từng bông hoa để nhận lời yêu thương</p>
+
+            <div class="bouquet-container fade-in-element" id="bouquet">
+                <div class="flower" data-flower="1" data-msg="Em là đoá hồng đẹp nhất trong vườn hoa cuộc đời anh 🌹">
+                    <div class="flower-bloom">🌹</div>
+                    <div class="flower-glow"></div>
+                </div>
+                <div class="flower" data-flower="2" data-msg="Mỗi ngày bên em đều là một ngày đáng nhớ 🌸">
+                    <div class="flower-bloom">🌸</div>
+                    <div class="flower-glow"></div>
+                </div>
+                <div class="flower" data-flower="3" data-msg="Nụ cười em sáng hơn cả ngàn vì sao 🌺">
+                    <div class="flower-bloom">🌺</div>
+                    <div class="flower-glow"></div>
+                </div>
+                <div class="flower" data-flower="4" data-msg="Em là lý do anh muốn trở nên tốt hơn mỗi ngày 🌷">
+                    <div class="flower-bloom">🌷</div>
+                    <div class="flower-glow"></div>
+                </div>
+                <div class="flower" data-flower="5" data-msg="Anh sẽ yêu em hôm nay, ngày mai và mãi mãi 💐">
+                    <div class="flower-bloom">💐</div>
+                    <div class="flower-glow"></div>
+                </div>
+            </div>
+
+            <div class="flower-message" id="flower-message">
+                <p class="flower-message-text" id="flower-message-text"></p>
+            </div>
+
+            <div class="flower-progress fade-in-element">
+                <span id="flowers-clicked">0</span> / 5 bông hoa 🌹
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 3: LOVE LETTER (ENVELOPE)              -->
     <!-- =============================================== -->
     <section id="letter" class="section letter-section">
         <div class="section-inner">
@@ -79,7 +123,7 @@
                 <p class="envelope-hint">Nhấn để mở phong bì</p>
             </div>
 
-            <!-- Letter Content (hidden initially) -->
+            <!-- Letter Content -->
             <div class="letter-content" id="letter-content">
                 <div class="letter-paper">
                     <p class="letter-greeting">Em Thảo thân thương,</p>
@@ -106,7 +150,33 @@
     </section>
 
     <!-- =============================================== -->
-    <!-- SECTION 3: INTERACTIVE CHOICES                 -->
+    <!-- SECTION 4: HOLDING HANDS (MỚI)                -->
+    <!-- =============================================== -->
+    <section id="holding-hands" class="section hands-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">🤝 Nắm tay anh nhé</h2>
+            <p class="section-desc fade-in-element">Giữ ngón tay / chuột trên bàn tay bên dưới trong 3 giây...</p>
+
+            <div class="hands-container fade-in-element">
+                <div class="hand hand-left" id="hand-left">🤚</div>
+                <div class="hand-progress-ring" id="hand-ring">
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" class="ring-bg"/>
+                        <circle cx="60" cy="60" r="54" class="ring-fill" id="ring-fill"/>
+                    </svg>
+                </div>
+                <div class="hand hand-right" id="hand-right">🤚</div>
+            </div>
+
+            <div class="hands-result" id="hands-result">
+                <div class="hands-together">🫶</div>
+                <p class="hands-message">Anh sẽ nắm tay em đi qua mọi bão giông.<br>Không bao giờ buông.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 5: INTERACTIVE CHOICES                 -->
     <!-- =============================================== -->
     <section id="choices" class="section choices-section">
         <div class="section-inner">
@@ -126,9 +196,12 @@
                     <span class="choice-icon">🤗</span>
                     <span class="choice-text">Ôm anh một cái thật chặt</span>
                 </button>
+                <button class="btn-choice" data-choice="kiss">
+                    <span class="choice-icon">💋</span>
+                    <span class="choice-text">Hôn anh một cái nào</span>
+                </button>
             </div>
 
-            <!-- Choice Response -->
             <div class="choice-response" id="choice-response">
                 <p class="choice-response-text" id="choice-response-text"></p>
             </div>
@@ -136,12 +209,125 @@
     </section>
 
     <!-- =============================================== -->
-    <!-- SECTION 4: MINI GAME - FIND HIDDEN HEARTS      -->
+    <!-- SECTION 6: LOVE QUIZ (MỚI)                    -->
+    <!-- =============================================== -->
+    <section id="quiz" class="section quiz-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">💝 Em biết anh bao nhiêu?</h2>
+            <p class="section-desc fade-in-element">Trả lời 3 câu hỏi về chúng mình nhé!</p>
+
+            <div class="quiz-container fade-in-element" id="quiz-container">
+                <!-- Question 1 -->
+                <div class="quiz-question active" id="q1">
+                    <p class="quiz-q-text">Ngày anh tỏ tình em là ngày nào?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">14/02/2025</button>
+                        <button class="quiz-option" data-correct="true">15/12/2025</button>
+                        <button class="quiz-option" data-correct="false">25/12/2025</button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-question" id="q2">
+                    <p class="quiz-q-text">Điều anh thích nhất ở em là gì?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">Nấu ăn giỏi</button>
+                        <button class="quiz-option" data-correct="false">Hát hay</button>
+                        <button class="quiz-option" data-correct="true">Tất cả mọi thứ về em 💕</button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-question" id="q3">
+                    <p class="quiz-q-text">Anh muốn gì nhất trong tương lai?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">Giàu có</button>
+                        <button class="quiz-option" data-correct="false">Nổi tiếng</button>
+                        <button class="quiz-option" data-correct="true">Được ở bên em mãi mãi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-score" id="quiz-score">
+                <span id="quiz-correct">0</span> / 3 💖
+            </div>
+
+            <div class="quiz-result" id="quiz-result">
+                <p class="quiz-result-text" id="quiz-result-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 7: MEMORY CARD GAME (MỚI)             -->
+    <!-- =============================================== -->
+    <section id="memory-game" class="section memory-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">🎮 Lật thẻ ký ức</h2>
+            <p class="section-desc fade-in-element">Tìm các cặp thẻ giống nhau – mỗi cặp là một kỷ niệm đẹp!</p>
+
+            <div class="memory-board fade-in-element" id="memory-board">
+                <!-- Cards will be generated by JS -->
+            </div>
+
+            <div class="memory-stats fade-in-element">
+                <span>Số lần lật: <strong id="flip-count">0</strong></span>
+                <span>Cặp tìm được: <strong id="pairs-found">0</strong>/4</span>
+            </div>
+
+            <div class="memory-complete" id="memory-complete">
+                <p class="memory-complete-text">🎉 Em giỏi quá! Mọi kỷ niệm đẹp đều thuộc về chúng mình!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 8: SCRATCH CARD (MỚI)                 -->
+    <!-- =============================================== -->
+    <section id="scratch" class="section scratch-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">🎫 Cào thẻ may mắn</h2>
+            <p class="section-desc fade-in-element">Dùng ngón tay / chuột cào lớp phủ để nhận phần thưởng bí mật!</p>
+
+            <div class="scratch-container fade-in-element">
+                <div class="scratch-card" id="scratch-card">
+                    <div class="scratch-prize" id="scratch-prize">
+                        <span class="scratch-emoji">💋</span>
+                        <p class="scratch-prize-text">Phần thưởng của em:</p>
+                        <p class="scratch-prize-value">1000 nụ hôn<br>từ anh! 💕</p>
+                    </div>
+                    <canvas id="scratch-canvas" width="320" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 9: KISS ANIMATION (MỚI)               -->
+    <!-- =============================================== -->
+    <section id="kiss" class="section kiss-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">💋 Nụ hôn dành cho em</h2>
+            <p class="section-desc fade-in-element">Nhấn vào nụ hôn để gửi yêu thương</p>
+
+            <div class="kiss-container fade-in-element">
+                <button class="kiss-btn" id="kiss-btn">💋</button>
+                <div class="kiss-counter">
+                    Đã gửi <span id="kiss-count">0</span> nụ hôn 💕
+                </div>
+            </div>
+
+            <div class="kiss-messages" id="kiss-messages"></div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 10: MINI GAME - FIND HEARTS            -->
     <!-- =============================================== -->
     <section id="minigame" class="section minigame-section">
         <div class="section-inner">
-            <h2 class="section-heading fade-in-element">🎮 Tìm trái tim ẩn</h2>
-            <p class="minigame-desc fade-in-element">Có 3 trái tim đang ẩn mình trong khu vực bên dưới. Tìm và chạm vào chúng nhé!</p>
+            <h2 class="section-heading fade-in-element">🎯 Tìm trái tim ẩn</h2>
+            <p class="minigame-desc fade-in-element">Có 3 trái tim đang ẩn mình. Tìm và chạm vào chúng nhé!</p>
 
             <div class="minigame-progress fade-in-element">
                 <span id="hearts-found">0</span> / 3 💖
@@ -151,7 +337,6 @@
                 <div class="hidden-heart" data-heart="1" style="top: 20%; left: 15%;">💖</div>
                 <div class="hidden-heart" data-heart="2" style="top: 60%; left: 70%;">💖</div>
                 <div class="hidden-heart" data-heart="3" style="top: 40%; left: 45%;">💖</div>
-                <!-- Decoy elements -->
                 <div class="decoy">✨</div>
                 <div class="decoy">🌟</div>
                 <div class="decoy">⭐</div>
@@ -159,7 +344,6 @@
                 <div class="decoy">🌙</div>
             </div>
 
-            <!-- Mini game message (hidden initially) -->
             <div class="minigame-message" id="minigame-message">
                 <p class="minigame-reveal-text">
                     "Anh chọn em, không phải hôm nay…<br>mà là rất lâu về sau."
@@ -169,7 +353,54 @@
     </section>
 
     <!-- =============================================== -->
-    <!-- SECTION 5: THE DECISION                        -->
+    <!-- SECTION 11: LOVE TIMELINE (MỚI)               -->
+    <!-- =============================================== -->
+    <section id="timeline" class="section timeline-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">📖 Câu chuyện của chúng mình</h2>
+
+            <div class="timeline fade-in-element">
+                <div class="timeline-item">
+                    <div class="timeline-dot">💫</div>
+                    <div class="timeline-content">
+                        <h3>Ngày đầu gặp nhau</h3>
+                        <p>Từ lúc đó, anh biết cuộc đời mình sẽ khác đi mãi mãi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">💕</div>
+                    <div class="timeline-content">
+                        <h3>15/12/2025 – Ngày tỏ tình</h3>
+                        <p>Ngày anh dũng cảm nhất – và cũng là ngày hạnh phúc nhất.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">🤝</div>
+                    <div class="timeline-content">
+                        <h3>Những ngày bên nhau</h3>
+                        <p>Mỗi khoảnh khắc cùng em đều là kho báu anh muốn giữ mãi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">💖</div>
+                    <div class="timeline-content">
+                        <h3>Valentine 2026</h3>
+                        <p>Hôm nay, anh muốn nói với em rằng – anh yêu em rất nhiều.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">🌟</div>
+                    <div class="timeline-content">
+                        <h3>Tương lai...</h3>
+                        <p>Anh muốn viết tiếp câu chuyện này cùng em. Mãi mãi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 12: THE DECISION                       -->
     <!-- =============================================== -->
     <section id="decision" class="section decision-section">
         <div class="section-inner">
@@ -196,9 +427,7 @@
         </div>
     </section>
 
-    <!-- =============================================== -->
-    <!-- FOOTER                                         -->
-    <!-- =============================================== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <p class="footer-text">Made with love by <span class="shimmer-text-sm">Dương Thành Đạt</span> – 2026</p>
         <p class="footer-heart">❤️</p>
