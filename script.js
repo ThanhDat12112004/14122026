@@ -1,5 +1,5 @@
 /* ================================================
-   VALENTINE 2026 – Dương Thanh Đạt ❤️ Lê Nguyên Thảo
+   VALENTINE 2026 – Dương Thành Đạt ❤️ Lê Nguyên Thảo
    VIP Ultra Edition – Complete Interactive Script
    ================================================ */
 
@@ -80,6 +80,11 @@ const DOM = {
   quizResult: document.getElementById('quiz-result'),
   quizResultText: document.getElementById('quiz-result-text'),
   scratchCanvas: document.getElementById('scratch-canvas'),
+  bouquetVip: document.getElementById('bouquet-vip'),
+  btnRoseBloom: document.getElementById('btn-rose-bloom'),
+  sparkleField: document.getElementById('sparkle-field'),
+  crystalHeart: document.getElementById('crystal-heart'),
+  bouquetRevealMsg: document.getElementById('bouquet-reveal-msg'),
 };
 
 // ===== STATE =====
@@ -103,6 +108,7 @@ let state = {
   quizCurrent: 0,
   quizScore: 0,
   petalsInterval: null,
+  bouquetActivated: false,
 };
 
 // ================================================
@@ -145,6 +151,7 @@ function initPage() {
   initDayCounter();
   initScrollObserver();
   initFallingPetals();
+  initGiantBouquet();
   initFlowers();
   initEnvelope();
   initHoldingHands();
@@ -260,6 +267,98 @@ function initScrollObserver() {
     { threshold: 0.2 }
   );
   document.querySelectorAll('.timeline-item').forEach((el) => timelineObserver.observe(el));
+}
+
+// ================================================
+// GIANT BOUQUET VIP
+// ================================================
+function initGiantBouquet() {
+  if (!DOM.btnRoseBloom || !DOM.bouquetVip) return;
+
+  DOM.btnRoseBloom.addEventListener('click', () => {
+    if (state.bouquetActivated) return;
+    state.bouquetActivated = true;
+
+    // Add glowing class to bouquet
+    DOM.bouquetVip.classList.add('glowing');
+
+    // Activate crystal heart
+    if (DOM.crystalHeart) {
+      DOM.crystalHeart.classList.add('active');
+    }
+
+    // Start sparkle particles
+    startBouquetSparkles();
+
+    // Show reveal message after delay
+    setTimeout(() => {
+      if (DOM.bouquetRevealMsg) {
+        DOM.bouquetRevealMsg.classList.add('show');
+      }
+    }, 1500);
+
+    // Button feedback
+    DOM.btnRoseBloom.textContent = '✨ Bó hoa đã phát sáng ✨';
+    DOM.btnRoseBloom.classList.add('activated');
+
+    // Effects
+    spawnHearts(15);
+    playMelody([392, 440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5], 0.15);
+  });
+}
+
+function startBouquetSparkles() {
+  if (!DOM.sparkleField) return;
+  let sparkleCount = 0;
+  const maxSparkles = 60;
+
+  function createSparkle() {
+    if (sparkleCount >= maxSparkles) return;
+    sparkleCount++;
+
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle-particle');
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.top = 20 + Math.random() * 60 + '%';
+    sparkle.style.animationDuration = 1.5 + Math.random() * 1.5 + 's';
+    sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+
+    // Random size
+    const size = 2 + Math.random() * 4;
+    sparkle.style.width = size + 'px';
+    sparkle.style.height = size + 'px';
+
+    // Random color (gold / pink / white)
+    const colors = ['#d4af37', '#f0d77b', '#f4a0b5', '#ffffff', '#ffd700'];
+    sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    DOM.sparkleField.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 3000);
+  }
+
+  // Initial burst
+  for (let i = 0; i < 20; i++) {
+    setTimeout(createSparkle, i * 80);
+  }
+
+  // Continuous sparkles
+  const sparkleInterval = setInterval(() => {
+    if (sparkleCount >= maxSparkles) {
+      // Reset count and continue
+      sparkleCount = 0;
+    }
+    createSparkle();
+  }, 200);
+
+  // Stop after 10 seconds, then slow sparkle
+  setTimeout(() => {
+    clearInterval(sparkleInterval);
+    // Slow residual sparkle
+    setInterval(() => {
+      sparkleCount = 0;
+      createSparkle();
+    }, 800);
+  }, 10000);
 }
 
 // ================================================
