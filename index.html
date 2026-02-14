@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Valentine 2026 – Dương Thành Đạt & Lê Nguyên Thảo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== CURSOR GLOW EFFECT ===== -->
+    <div id="cursor-glow"></div>
+
+    <!-- ===== FLOATING HEARTS CONTAINER ===== -->
+    <div id="floating-hearts"></div>
+
+    <!-- ===== CONFETTI CANVAS ===== -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- ===== MUSIC CONTROL ===== -->
+    <button id="music-toggle" class="music-btn" title="Bật/Tắt nhạc">
+        <span class="music-icon">🎵</span>
+        <span class="music-off-icon" style="display:none;">🔇</span>
+    </button>
+
+    <!-- ===== PASSWORD OVERLAY ===== -->
+    <div id="password-overlay">
+        <div class="password-box">
+            <div class="password-heart">💌</div>
+            <h2>Trang này dành riêng cho em</h2>
+            <p>Nhập mật khẩu để mở thư tình</p>
+            <input type="password" id="password-input" placeholder="Nhập mật khẩu..." autocomplete="off">
+            <button id="password-submit">Mở thư 💖</button>
+            <p id="password-error" class="error-text"></p>
+            <p class="password-hint">💡 Gợi ý: Ngày anh tỏ tình em (ddmmyyyy)</p>
+        </div>
+    </div>
+
+    <!-- =============================================== -->
+    <!-- SECTION 1: HERO                                -->
+    <!-- =============================================== -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-bg-lights"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle" id="hero-subtitle"></p>
+            <h1 class="hero-title">
+                <span class="shimmer-text" id="hero-name">Lê Nguyên Thảo</span>
+            </h1>
+            <p class="hero-date" id="hero-date"></p>
+            <p class="day-counter" id="day-counter"></p>
+            <button class="btn-gift" id="btn-open-gift">
+                <span class="btn-icon">🎁</span>
+                <span class="btn-text">Mở món quà bí mật</span>
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <span>▼</span>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 2: LOVE LETTER (ENVELOPE)              -->
+    <!-- =============================================== -->
+    <section id="letter" class="section letter-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">💌 Lá thư dành cho em</h2>
+
+            <!-- 3D Envelope -->
+            <div class="envelope-container fade-in-element" id="envelope-container">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="envelope-heart">❤️</div>
+                    </div>
+                </div>
+                <p class="envelope-hint">Nhấn để mở phong bì</p>
+            </div>
+
+            <!-- Letter Content (hidden initially) -->
+            <div class="letter-content" id="letter-content">
+                <div class="letter-paper">
+                    <p class="letter-greeting">Em Thảo thân thương,</p>
+                    <p class="letter-paragraph">
+                        Ngày mình gặp em, mọi thứ xung quanh bỗng chậm lại theo một cách mình chưa từng biết.
+                        Em không chỉ là người khiến anh cười — em là người khiến anh muốn trở nên tốt hơn mỗi ngày.
+                    </p>
+                    <p class="letter-paragraph">
+                        Anh cảm ơn em vì những buổi chiều vô nghĩa mà trở nên có ý nghĩa, vì những im lặng cùng nhau
+                        mà vẫn ấm, và vì sự tin tưởng em dành cho anh. Anh không hứa cuộc đời không bão giông,
+                        nhưng anh hứa sẽ luôn giữ cho em một nơi an toàn, để em về sau mỗi ngày mệt mỏi.
+                    </p>
+                    <p class="letter-paragraph">
+                        Nếu em đồng ý, anh muốn bắt đầu mọi "ngày mai" cùng em. Không ồn ào — chỉ là hai người,
+                        một tách cà phê sớm, một cái ôm lúc tối, và những ước mơ cùng xây.
+                    </p>
+                    <p class="letter-closing">
+                        Với tất cả tĩnh lặng và thiết tha,
+                    </p>
+                    <p class="letter-signature">Dương Thành Đạt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 3: INTERACTIVE CHOICES                 -->
+    <!-- =============================================== -->
+    <section id="choices" class="section choices-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">✨ Em chọn đi</h2>
+            <p class="choices-question fade-in-element">Nếu phải chọn một điều, em sẽ chọn gì?</p>
+
+            <div class="choices-buttons fade-in-element">
+                <button class="btn-choice" data-choice="travel">
+                    <span class="choice-icon">🌍</span>
+                    <span class="choice-text">Đi du lịch cùng anh</span>
+                </button>
+                <button class="btn-choice" data-choice="future">
+                    <span class="choice-icon">🏡</span>
+                    <span class="choice-text">Cùng nhau xây dựng tương lai</span>
+                </button>
+                <button class="btn-choice" data-choice="hug">
+                    <span class="choice-icon">🤗</span>
+                    <span class="choice-text">Ôm anh một cái thật chặt</span>
+                </button>
+            </div>
+
+            <!-- Choice Response -->
+            <div class="choice-response" id="choice-response">
+                <p class="choice-response-text" id="choice-response-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 4: MINI GAME - FIND HIDDEN HEARTS      -->
+    <!-- =============================================== -->
+    <section id="minigame" class="section minigame-section">
+        <div class="section-inner">
+            <h2 class="section-heading fade-in-element">🎮 Tìm trái tim ẩn</h2>
+            <p class="minigame-desc fade-in-element">Có 3 trái tim đang ẩn mình trong khu vực bên dưới. Tìm và chạm vào chúng nhé!</p>
+
+            <div class="minigame-progress fade-in-element">
+                <span id="hearts-found">0</span> / 3 💖
+            </div>
+
+            <div class="minigame-area fade-in-element" id="minigame-area">
+                <div class="hidden-heart" data-heart="1" style="top: 20%; left: 15%;">💖</div>
+                <div class="hidden-heart" data-heart="2" style="top: 60%; left: 70%;">💖</div>
+                <div class="hidden-heart" data-heart="3" style="top: 40%; left: 45%;">💖</div>
+                <!-- Decoy elements -->
+                <div class="decoy">✨</div>
+                <div class="decoy">🌟</div>
+                <div class="decoy">⭐</div>
+                <div class="decoy">💫</div>
+                <div class="decoy">🌙</div>
+            </div>
+
+            <!-- Mini game message (hidden initially) -->
+            <div class="minigame-message" id="minigame-message">
+                <p class="minigame-reveal-text">
+                    "Anh chọn em, không phải hôm nay…<br>mà là rất lâu về sau."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- SECTION 5: THE DECISION                        -->
+    <!-- =============================================== -->
+    <section id="decision" class="section decision-section">
+        <div class="section-inner">
+            <h2 class="section-heading decision-heading fade-in-element">
+                Em có đồng ý trở thành<br>Valentine của anh không?
+            </h2>
+
+            <div class="decision-buttons fade-in-element">
+                <button class="btn-yes" id="btn-yes">Đồng ý 💖</button>
+                <button class="btn-no" id="btn-no">Suy nghĩ lại 🤔</button>
+            </div>
+
+            <!-- YES response -->
+            <div class="yes-response" id="yes-response">
+                <div class="yes-heart-big">💖</div>
+                <h2 class="yes-title">
+                    Dương Thành Đạt<br>
+                    <span class="yes-heart-text">❤️</span><br>
+                    Lê Nguyên Thảo
+                </h2>
+                <p class="yes-message">yêu nhau rất nhiều.</p>
+                <div class="fireworks-container" id="fireworks-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================== -->
+    <!-- FOOTER                                         -->
+    <!-- =============================================== -->
+    <footer class="footer">
+        <p class="footer-text">Made with love by <span class="shimmer-text-sm">Dương Thành Đạt</span> – 2026</p>
+        <p class="footer-heart">❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
